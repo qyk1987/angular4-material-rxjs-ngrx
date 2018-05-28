@@ -1,0 +1,79 @@
+<div>
+  <md-list>
+    <md-list-item *ngIf="filter?.grades.length>0">
+      <label>年级:</label>
+      <span  
+      *ngIf="filter?.grades.length>1"
+      [ngClass]="{'selected':selectAll[0]}"
+      (click)="onClickAll(0)"
+      >全部</span>
+      <span  
+      *ngFor="let grade of filter?.grades;let i=index"
+      [ngClass]="{'selected':grade.selected}"
+      (click)="onClickCheckbox(0,i)"
+      >{{grade.gradeName}}</span>
+    </md-list-item>
+
+
+    <md-list-item *ngIf="filter?.majors.length>0">
+      <label>专业:</label>
+      <span class="grade-check" 
+      *ngIf="filter?.majors.length>1"
+      [ngClass]="{'selected':selectAll[1]}"
+      (click)="onClickAll(1)"
+      >全部</span>
+      <span class="grade-check" 
+      *ngFor="let major of filter?.majors;let i=index"
+      [ngClass]="{'selected':major.selected}"
+      (click)="onClickCheckbox(1,i)"
+      >{{major.majorName}}</span>
+    </md-list-item>
+
+    
+
+
+
+    <md-list-item *ngIf="filter?.schools.length>0">
+      <label>学校:</label>
+      <span class="grade-check" 
+      *ngIf="filter?.schools.length>1"
+      [ngClass]="{'selected':selectAll[2]}"
+      (click)="onClickAll(2)"
+      >全部</span>
+      <span class="grade-check" 
+      *ngFor="let school of filter?.schools;let i=index"
+      [ngClass]="{'selected':school.selected}"
+      (click)="onClickCheckbox(2,i)"
+      >{{school.schoolName}}</span>
+    </md-list-item>
+
+
+    <md-list-item *ngIf="filter?.intros.length>0">
+      <label>业务员:</label>
+      <span class="grade-check" 
+      *ngIf="filter?.intros.length>1"
+      [ngClass]="{'selected':selectAll[3]}"
+      (click)="onClickAll(3)"
+      >全部</span>
+      <span class="grade-check" 
+      *ngFor="let intro of filter?.intros;let i=index"
+      [ngClass]="{'selected':intro.selected}"
+      (click)="onClickCheckbox(3,i)"
+      >{{intro.introName}}</span>
+    </md-list-item>
+
+    <md-list-item *ngIf="filter?.educations.length>0">
+      <label>学历:</label>
+      <span class="grade-check" 
+      *ngIf="filter?.educations.length>1"
+      [ngClass]="{'selected':selectAll[4]}"
+      (click)="onClickAll(4)"
+      >全部</span>
+      <span class="grade-check" 
+      *ngFor="let edu of filter?.educations;let i=index"
+      [ngClass]="{'selected':edu.selected}"
+      (click)="onClickCheckbox(4,i)"
+      >{{edu.educationName}}</span>
+    </md-list-item>
+  </md-list>
+</div>

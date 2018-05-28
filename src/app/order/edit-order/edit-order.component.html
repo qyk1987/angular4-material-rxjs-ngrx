@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)" >
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content  class="content">
+      
+    <!-- <app-order-input  [order]="order">
+
+    </app-order-input> -->
+
+  </div>
+  <div md-dialog-actions>
+      <button md-raised-button color='primary' type="button" >保存</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+</form>

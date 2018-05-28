@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+      <md-input-container class="mgr15 wd150">
+          <input mdInput type="number" placeholder="金额" formControlName="Value">
+      </md-input-container>
+      
+  </div>
+  <div md-dialog-actions>
+      <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >收款</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+
+</form>

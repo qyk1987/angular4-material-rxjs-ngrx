@@ -1,0 +1,24 @@
+<md-card>
+  <md-card-header (click)="onClick($event)">
+    <md-card-title>
+      <span class="title">
+        {{item.ProductName}}
+      </span>
+    </md-card-title>
+    <button class="btn" md-icon-button  title="报名" (click)="openInviteDialog($event)">
+      <md-icon>group_add</md-icon>
+    </button>
+  </md-card-header>
+  <img md-card-image [src]="item.src" (click)="onClick($event)">
+  <md-card-content (click)="onClick($event)" style="margin-bottom:0px;">
+    <p><label>价格：</label><span>￥{{item.Price}}</span></p>
+    <p><span *ngIf="item.hasCoupon"><label>优惠：</label><span>{{item.defaultCoupon.CouponName}}</span></span>
+       <span *ngIf="item.IsDiscountForOld"><label>老学员优惠：</label><span>￥{{item.DiscountValue}}</span></span>
+    </p>
+    
+  </md-card-content>
+  <!-- <md-card-actions>
+    
+   
+  </md-card-actions> -->
+</md-card>

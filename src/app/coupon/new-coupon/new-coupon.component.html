@@ -1,0 +1,28 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+    <h2 md-dialog-title>{{title}}</h2>
+    <div md-dialog-content>
+        <md-input-container class="mgr15 wd300">
+            <input mdInput type="text" placeholder="优惠券名称" formControlName="CouponName">
+        </md-input-container>
+        <md-input-container class="mgr15 wd150">
+            <input mdInput type="number" placeholder="金额" formControlName="Vlaue">
+        </md-input-container>
+        <md-input-container  class="full-width">
+            <input mdInput type="text" placeholder="使用规则" formControlName="Rule">
+        </md-input-container>
+        <md-input-container >
+            <input mdInput type="text" placeholder="失效时间" [mdDatepicker]="endDatepicker"formControlName="OverDate"  >
+            <button type="button" mdSuffix [mdDatepickerToggle]="endDatepicker"></button>
+        </md-input-container>
+        <md-datepicker #endDatepicker></md-datepicker>
+        <md-slide-toggle  *ngIf="data.coupon" formControlName="State">是否可用</md-slide-toggle>
+    </div>
+   
+    
+    <div md-dialog-actions>
+        <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+        <button md-dialog-close md-button  type="button">关闭</button>
+    </div>
+  
+</form>

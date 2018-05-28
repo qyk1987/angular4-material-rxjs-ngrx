@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+      <md-input-container class="full-width" color="accent" >
+          <input mdInput type="text" placeholder="班级名称" formControlName="ClassName">
+      </md-input-container>
+      <app-product-chips-list
+                    [label]="'选择产品:'" [multiple]='false'  name="products"  formControlName="products"
+                >            
+      </app-product-chips-list>  
+      
+        <md-select placeholder="班主任"   formControlName="ChargerID" >
+          <md-option *ngFor="let charger of chargers$|async" [value]=charger.Id 
+          >
+          {{charger.Name}}
+          </md-option>
+        </md-select>
+        <md-select placeholder="班级状态"   formControlName="ClassState" >
+            <md-option *ngFor="let state of baseData.classState" [value]=state.id 
+            >
+            {{state.name}}
+            </md-option>
+        </md-select>
+      <md-input-container class="full-width" color="accent" >
+          <textarea mdInput  placeholder="班级安排" formControlName="Arrange"></textarea>
+      </md-input-container>
+      <md-input-container >
+                      <input mdInput type="text" [mdDatepickerFilter]="endFilter" placeholder="结班时间" [mdDatepicker]="endDatepicker"formControlName="OverDate"  >
+                      <button type="button" mdSuffix [mdDatepickerToggle]="endDatepicker"></button>
+      </md-input-container>
+      <md-datepicker #endDatepicker touchUi="true" ></md-datepicker>
+     
+
+  </div>
+  <div md-dialog-actions>
+      <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+
+</form>

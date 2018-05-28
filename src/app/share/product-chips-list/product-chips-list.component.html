@@ -1,0 +1,31 @@
+<div [formGroup]="chips" class="full-width">
+    <span>{{label}}</span>
+    <md-chip-list>
+      <md-chip selected="true" color="primary" *ngFor="let member of items">
+          {{member.ProductName}} <span class="remove-tag"  (click)="removeMember(member)">x</span>
+      </md-chip>
+    </md-chip-list>
+    <md-input-container *ngIf="displayInput" style="width:70%" >
+      <input type="text" mdInput 
+        [placeholder]="placeholderText"
+        [mdAutocomplete]="autoMember"
+        formControlName="memberSearch">
+    </md-input-container>
+     <!-- <md-select
+          *ngIf="displayInput"
+          class="full-width"
+          placeholder="请选择产品"
+          formControlName="memberSelect"
+          >
+          <md-option *ngFor="let item of memberResults$|async" [value]="item">
+            {{ item.ProductName }}
+          </md-option>
+    </md-select> -->
+  </div>
+  <md-autocomplete #autoMember="mdAutocomplete" [displayWith]="displayUser">
+    <md-option *ngFor="let item of memberResults$|async" 
+        [value]="item"  
+        (onSelectionChange)="handleMemberSelection(item)"> 
+      {{item.ProductName}}
+    </md-option>
+  </md-autocomplete>

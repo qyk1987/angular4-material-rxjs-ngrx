@@ -1,0 +1,26 @@
+<div class="container">
+
+    <div class="side">
+        <app-order-filter
+        (select)="handleSelect($event)"
+        >    
+        </app-order-filter>
+    </div>
+    <div class="content">
+        <app-table
+        [setting]="settings"
+         [data]="details$|async"
+         
+         (changeNum)="handleChangeNum($event)"
+        >
+      
+        </app-table>
+        <app-page
+        
+         (change)="handlePageChange($event)"
+         >
+         </app-page>
+    </div>
+</div>
+
+

@@ -1,0 +1,14 @@
+md-sidenav-container.myapp-dark-theme{
+    background-color: black;
+}
+
+md-sidenav{
+    width:300px;
+}
+@media screen and (max-width: 900px) { 
+
+    md-sidenav{
+        width:200px;
+    }
+    
+}

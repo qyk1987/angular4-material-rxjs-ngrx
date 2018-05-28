@@ -1,0 +1,18 @@
+<md-nav-list>
+    <md-list-item
+    (click)="all()"
+    [ngClass]="{'selected':selected}"
+    >
+    
+   <span>全部 </span>
+  </md-list-item>
+  <app-nva-item 
+    *ngFor="let item of items;let i=index"
+    [hasCount]="hasCount"
+    [item]="item"
+    (slide)="handleSlide(i)"
+    (selectItem)="handleSelect($event)"
+  >
+
+  </app-nva-item>
+</md-nav-list>

@@ -1,0 +1,37 @@
+<form [formGroup]="form" >
+      <div class="row">
+          <button  md-button type="button" (click)="setDate(1)">最近7天</button>
+          <button  md-button type="button" (click)="setDate(2)" [disabled]='isMonday'>本周</button>
+          <button  md-button type="button" (click)="setDate(3)">上周</button>
+          <button  md-button type="button" (click)="setDate(4)">最近30天</button>
+          <button  md-button type="button" (click)="setDate(5)" [disabled]='isOne'>当月</button>
+          <button  md-button type="button" (click)="setDate(6)">上月</button>
+      </div>
+      <div class="row">
+          <ng-container formGroupName="formDate">
+              <md-input-container >
+                  <input mdInput type="text" [mdDatepickerFilter]="startFilter" placeholder="起始时间" [mdDatepicker]="startDatepicker" formControlName="startDate"  >
+                  <button type="button" mdSuffix [mdDatepickerToggle]="startDatepicker"></button>
+              </md-input-container>
+              <md-datepicker #startDatepicker touchUi="true" ></md-datepicker>
+              <md-input-container >
+                      <input mdInput type="text" [mdDatepickerFilter]="endFilter" placeholder="终止时间" [mdDatepicker]="endDatepicker"formControlName="endDate"  >
+                      <button type="button" mdSuffix [mdDatepickerToggle]="endDatepicker"></button>
+              </md-input-container>
+              <md-datepicker #endDatepicker touchUi="true" ></md-datepicker>
+              <md-select placeholder="时间粒度" formControlName="timeSpan" >
+                  <md-option *ngFor="let tspan of timeSpans" [value]=tspan.value 
+                  >
+                  {{tspan.label}}
+                  </md-option>
+              </md-select>
+              <button color="accent"  md-raised-button type="button" [disabled]="!form.valid" (click)="updateDate()">应用</button>
+              <md-error *ngIf="form.get('formDate').hasError('startDateInvalid')">起始日期不正确</md-error>
+              <md-error *ngIf="form.get('formDate').hasError('endDateInvalid')">终止日期不正确</md-error>
+              <md-error *ngIf="form.get('formDate').hasError('spanInvalid')">时间粒度不正确</md-error>
+          </ng-container>
+      </div>
+
+
+  
+</form>

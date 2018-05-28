@@ -1,0 +1,98 @@
+md-card{
+    width: 460px;
+    // border: 1px solid #e5e5e5;
+    // margin-bottom: 20px;
+    //padding: 0;
+
+}
+md-card-header{
+    height: 40px;
+    line-height: 40px;
+    margin: 0 -24px;
+    color: #999;
+    padding: 0 21px;
+    font-size: 14px;
+}
+md-card-header.nopay{
+    background-color: yellowgreen;
+}
+md-card-header.wait{
+    background-color: #008080;
+}
+md-card-header.pay{
+    background-color: #ffd48d;
+}
+md-card-header.debt{
+    background-color: orangered;
+}
+md-card-header.compensation{
+    background-color: #b2a1ff;
+}
+.channelicon{
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.dark {
+    color: #494949;
+}
+.margin-left {
+    margin-left: 23px;
+}
+md-card-content {
+    padding: 5px 21px;
+    color: #494949;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.item{
+    width:100%;
+    display: flex;
+
+    align-items: center;
+}
+
+
+.prd {
+    width: 260px;
+    font-size: 14px;
+}
+.cps{
+    width: 260px;
+    font-size: 14px;
+}
+.price{
+    margin-left: 20px;
+    width: 90px;
+    color: #862323;
+    font-size: 22px;
+    line-height: 60px;
+}
+.channel{
+    width: 100px;
+    color: #666;
+    font-size: 16px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+}
+.hasdebt{
+    width: 150px;
+    color: #862323;
+    font-size: 16px;
+    line-height: 60px;
+}
+.btn{
+    width: 260px;
+    font-size: 16px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow:1;
+}

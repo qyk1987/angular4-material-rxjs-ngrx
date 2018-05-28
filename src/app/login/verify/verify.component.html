@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+  <md-card>
+    <md-card-header>
+      <md-card-title>注册步骤1：验证手机</md-card-title>
+    </md-card-header>
+    <md-card-content>
+       
+            <md-input-container   class="full-width" color="accent">
+                <input mdInput type="text" placeholder="手机号" formControlName="PhoneNumber">
+                <md-error>手机号格式不正确</md-error>
+              </md-input-container>
+              <md-input-container    color="accent">
+                <input mdInput type="text" placeholder="验证码" formControlName="Code">
+                <md-error>请填写验证码</md-error>
+              </md-input-container>
+              <img (click)="newCode()" [src]="'data:image/png;base64,'+code?.img" alt="看不清，点击换一张">
+          
+      
+      <md-input-container    color="accent">
+        <input mdInput type="text"   placeholder="短信验证码" formControlName="SmsCode">
+        <md-error>请填写短信验证码</md-error>
+      </md-input-container>
+      
+      <button md-raised-button color='accent' [disabled]="form.get('PhoneNumber').hasError('mobile')||form.get('Code').hasError('required')||issend" (click)="sendCode()" type="button">{{btnText}}</button>
+      <button md-raised-button color='accent' [disabled]="!form.valid||form.get('SmsCode').disabled" type="submit">下一步</button>
+      <span class="error" *ngIf="iserror">{{error}}</span>
+    </md-card-content>
+    <md-card-actions class="text-right">
+      <p>已经有账户?<a routerLink="/login">登录</a></p>
+      <p>忘记密码？<a routerLink="/forget">找回密码</a></p>
+    </md-card-actions>
+  </md-card>
+
+  
+</form>

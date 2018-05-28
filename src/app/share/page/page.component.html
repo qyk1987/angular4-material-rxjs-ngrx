@@ -1,0 +1,19 @@
+
+<div class="container" *ngIf="page.count>0">
+  <div class="pages">
+    <div *ngIf="hasTotal">
+      总计<span>{{page.count}}</span>条，第<span>{{page.currentPage}}</span>/<span>{{page.totalPage}}</span>页
+    </div>
+  
+    <a *ngIf="page.count>1&&page.currentPage>1"   (click)="goto(page.currentPage-1)" class="prev" href="javascript:void(0);">
+      上一页
+      <em class="arrow_pre"></em>
+    </a>
+    
+    <a *ngFor="let index of page.pages" [ngClass]="{'currpage':page.currentPage===index}"  (click)="goto(index)"  href="javascript:void(0);">{{index===0?'...':index}}</a>
+    <a class="next" *ngIf="page.currentPage<page.totalPage&&page.count>1" (click)="goto(page.currentPage+1)" href="javascript:void(0);">
+      下一页
+      <em class="arrow_next"></em>
+    </a>
+  </div>
+</div>

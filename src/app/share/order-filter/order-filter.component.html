@@ -1,0 +1,29 @@
+<div>
+  <md-input-container >
+    <input mdInput  placeholder="起始时间" [mdDatepickerFilter]="startFilter"  [mdDatepicker]="startDatepicker" [(ngModel)]="_data.startDate" disabled >
+    <button type="button" mdSuffix [mdDatepickerToggle]="startDatepicker"></button>
+  </md-input-container>
+  <md-datepicker (selectedChanged)="onStartChange($event)"  #startDatepicker touchUi="true" disabled="false"></md-datepicker>
+  <md-input-container >
+        <input mdInput  placeholder="终止时间" [mdDatepickerFilter]="endFilter"  [mdDatepicker]="endDatepicker" [(ngModel)]="_data.endDate" disabled >
+        <button type="button" mdSuffix [mdDatepickerToggle]="endDatepicker"></button>
+  </md-input-container>
+  <md-datepicker (selectedChanged)="onEndChange($event)" #endDatepicker touchUi="true" disabled="false"></md-datepicker>
+
+  <div>
+    <label>选择产品:</label>
+    <span  
+    [ngClass]="{'selected':selectAll}"
+    (click)="onClickAll()"
+    >全部</span>
+    <div class="list">
+      <span  
+      *ngFor="let product of products;let i=index"
+      [ngClass]="{'selected':product.selected}"
+      (click)="onClickCheckbox(i)"
+      >{{product.ProductName+'('+product.Count+')'}}</span>
+    </div>
+   
+  </div>
+</div>
+

@@ -1,0 +1,44 @@
+<md-card>
+  <md-card-header >
+    <md-card-title>
+      <span class="title">
+        {{item.ClassName}}
+      </span>
+    </md-card-title>
+    <div *ngIf="item.showMenu">
+      <div class="menubtn">
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>keyboard_arrow_down</md-icon>
+        </button>
+      </div>
+      <md-menu #menu="mdMenu">
+        <button md-menu-item (click)="onEdit($event)">
+          <md-icon>mode_edit</md-icon>
+          <span> 编辑班级 </span>
+        </button>
+        <md-divider></md-divider>
+        <button md-menu-item (click)="onMoveStudent($event)">
+          <md-icon svgIcon="move" class="material-icon">content_copy</md-icon>
+          <span> 添加学生<span *ngIf="item.canAddCount>0" class="badge badge-accent">{{item.canAddCount}}</span> </span>
+        </button>
+        <md-divider></md-divider>
+        <button md-menu-item (click)="onDelete($event)">
+          <md-icon>delete_forever</md-icon>
+          <span> 删除班级 </span>
+        </button>
+      </md-menu>
+    </div>
+    
+  </md-card-header>
+  <img md-card-image src="assets/img/covers/2.jpg" (click)="onClick($event)">
+  <md-card-content (click)="onClick($event)" style="margin-bottom:0px;">
+    <p><label>班级人数：</label><span>{{item.StudentCount}}</span></p>
+    <p><label>班主任：</label><span>{{item.chargerName}}</span>
+    </p>
+    
+  </md-card-content>
+  <!-- <md-card-actions>
+    
+   
+  </md-card-actions> -->
+</md-card>

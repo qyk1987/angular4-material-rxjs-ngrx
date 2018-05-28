@@ -1,0 +1,15 @@
+<div>
+    <h3 [ngClass]="{'isshow':onlyShow,'notshow':!onlyShow}">{{title}}</h3>
+    <span class="not-free tip">没空</span> <span class="free tip">有空</span>
+  </div>
+  <div >
+    
+    <md-grid-list [cols]="cols" [rowHeight]="rowHeight">
+      <md-grid-tile *ngFor="let title of titles"  class="title"  [ngStyle]="{'width':itemWidth}">
+          <span>{{title}}</span>
+      </md-grid-tile>
+      <md-grid-tile *ngFor="let item of items;let i=index"  class="box" (click)="onChange(i)" [ngClass]="{'free':item==1,'not-free':item==0}" [ngStyle]="{'width':itemWidth}">
+        <span>{{i/7<1?"上午":(i/7<2?"下午":"晚上")}}</span>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>

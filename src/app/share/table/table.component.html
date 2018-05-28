@@ -1,0 +1,98 @@
+<div class="table-container">
+  <div class="table-toolbar"  >
+      <div *ngIf="setting.showColumns" class="list">
+          <button color="accent" md-icon-button type="button" title='显示列' (click)="showlist=!showlist">
+              <md-icon class="search">view_comfy</md-icon>
+          </button>
+        <ul *ngIf="showlist">
+          <li *ngFor="let item of columns;let i=index">
+            <md-checkbox [checked]='item.selected' (click)="onClickFiled($event)" (change)="checkFiledChanged(i)">{{item.title}}</md-checkbox>
+          </li>
+        </ul>
+      </div>
+      <button color="accent" md-icon-button type="button"  title='新增' *ngIf="setting.showAdd" (click)="onAdd($event)">
+          <md-icon class="search">add</md-icon>
+      </button>
+      <button color="accent" md-icon-button type="button" title='导出' *ngIf="setting.showExport" (click)="onExport($event)">
+          <md-icon class="search">arrow_upward</md-icon>
+      </button>
+    <md-select
+          placeholder="选择每页显示数"
+          *ngIf="setting.showPageNum"
+          (change)="onChangeNum()"
+          [(ngModel)]="num"
+          >
+          <md-option *ngFor="let item of setting.pageNums"    [value]="item">
+            {{ item }}
+          </md-option>
+    </md-select>
+      
+     
+      
+  </div>
+  <table class="table"  [ngClass]="{'table-hover':setting?.class[0],'table-striped':setting?.class[1], 'table-condensed':setting?.class[2], 'table-bordered':setting?.class[3]}">
+    <thead>
+      <tr>
+        <th *ngIf="setting?.hasCheckBox">
+          <md-checkbox
+            (change)="checkAll($event)"
+            [checked]='selectall'
+            >
+          </md-checkbox>
+        </th>
+        <th *ngFor="let item of fileds" >
+            {{item.title}}
+        </th>
+        <th *ngIf="setting.showEdit||setting.showDelete">
+          
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data;let i=index" (click)="onClickItem($event,item)">
+        <td *ngIf="setting?.hasCheckBox">
+          <md-checkbox
+            (change)="check($event,i)"
+            [checked]='item.selected'
+            >
+          </md-checkbox>
+        </td>
+        <td *ngFor="let filed of fileds" >
+            <span *ngIf="filed.format=='date'">{{item[filed.filed]| amAdd: 8 : 'hours' | amDateFormat:'YY/MM/DD'}}</span> 
+            <span *ngIf="filed.format=='toggle'"> 
+              <md-slide-toggle   
+                *ngIf="filed.enabled"  
+                [color]="accent"
+                [checked]="item[filed.filed]" 
+                (click)="toggleClick($event)" 
+                [(ngModel)]="item[filed.filed]" 
+                (change)="onToggle($event,filed,item)" 
+                >
+              </md-slide-toggle>
+              <span *ngIf="!filed.enabled">
+                  <md-icon *ngIf="item[filed.filed]" color="accent">check</md-icon>
+              </span>
+              
+            </span>
+            <span *ngIf="filed.format==null">{{item[filed.filed]}}</span> 
+        </td>
+        <td *ngIf="setting.showEdit||setting.showDelete" style="width:100px;">
+          <button color="accent"md-icon-button type="button" *ngIf="setting.showEdit" (click)="onEdit($event,item)">
+            <md-icon >edit</md-icon>
+          </button>
+          <button color="accent"md-icon-button type="button" *ngIf="setting.showDelete" (click)="onDelete($event,item)">
+            <md-icon >delete</md-icon>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="setting?.hasTotal">
+          <td *ngIf="setting?.hasCheckBox"></td>
+          <td *ngFor="let val of total">
+              {{val}}
+          </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

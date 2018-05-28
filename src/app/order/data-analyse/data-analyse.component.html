@@ -1,0 +1,60 @@
+
+<div class="container">
+    <div class="toolbar">
+        <div class="title">
+            <h3>业务数据分析</h3>
+        </div>
+        <app-date-input
+        [(ngModel)]="formDate"
+        (update)="getData()"
+        >
+
+        </app-date-input>
+        
+    </div>
+    <div class="main-container">
+        <div class="board-container">
+            <div class="header-charts-container">
+                <div style="flex: 1 1 1e-09px;box-sizing: border-box;">
+                    <div class="chart-widget">
+                            <div class="chart-container" >
+                                   <div style="width:100%">
+                                    <div echarts [options]="chartOption"  [loading]="isLoading" class="demo-chart"></div>
+                                   </div>
+                            </div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 1e-09px;box-sizing: border-box;">
+                    <div class="chart-widget">
+                            <div class="chart-container" >
+                                <div class="pie">
+                                    <div echarts [options]="pie1chartOption"  [loading]="pieLoading1" ></div>
+                                </div>
+                                <div class="pie">
+                                    <div echarts [options]="pie2chartOption"  [loading]="pieLoading2" ></div>
+                                </div>
+                                <div class="pie">
+                                    <div echarts [options]="pie3chartOption"  [loading]="pieLoading3" ></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- <div class="main-charts-container">
+                <div class="every-chart">
+                    <div class="traffic-sources-card chart-widget">
+                        <div class="title-container">
+                                <h3>业务员业绩</h3>
+                        </div>
+                        <div calss="content">
+
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+   
+</div>
+

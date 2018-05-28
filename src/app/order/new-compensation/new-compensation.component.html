@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+      <md-input-container class="mgr15 wd150">
+          <input mdInput type="number" placeholder="补费金额" formControlName="Value">
+          <md-error *ngIf="form.get('Value').hasError('maxInvalid')">年龄或单位不正确</md-error>
+          <md-error *ngIf="form.get('Value').hasError('minInvalid')">年龄或单位不正确</md-error>
+      </md-input-container>
+      <md-select
+            placeholder="收款方式*"
+            formControlName="Channel"
+            >
+            <md-option *ngFor="let channel of baseData.channel" [value]="channel.id">
+              {{ channel.name }}
+            </md-option>
+      </md-select>
+  </div>
+  <div md-dialog-actions>
+      <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+
+</form>

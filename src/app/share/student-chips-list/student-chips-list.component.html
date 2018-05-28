@@ -1,0 +1,25 @@
+<div [formGroup]="chips" class="full-width">
+    <span>{{label}}</span>
+    <md-chip-list>
+      <md-chip selected="true" color="primary" *ngFor="let member of items">
+          {{member.Name}} <span class="remove-tag"  (click)="removeMember(member)">x</span>
+      </md-chip>
+    </md-chip-list>
+    <md-input-container *ngIf="displayInput" style="width:70%" >
+      <input type="text" mdInput 
+        [placeholder]="placeholderText"
+        [mdAutocomplete]="autoMember"
+        formControlName="memberSearch">
+    </md-input-container>
+    <button color="accent"md-raised-button type="button" (click)="openNewStudentDialog()" *ngIf="isAddStudent">
+      <md-icon class="search">add</md-icon>
+      新增学生
+    </button>
+</div>
+  <md-autocomplete #autoMember="mdAutocomplete" [displayWith]="displayUser">
+    <md-option *ngFor="let item of memberResults$|async" 
+        [value]="item"  
+        (onSelectionChange)="handleMemberSelection(item)"> 
+      {{item.Name+item.MobilePhoneNO}}
+    </md-option>
+  </md-autocomplete>

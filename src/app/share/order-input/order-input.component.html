@@ -1,0 +1,119 @@
+<div class="order-input">
+  <p>
+    <span>学生{{index}}：</span>
+    <span>{{order.student.Name+order.student.IdCardNO}}</span>
+  </p>
+  <div class="list">
+    <div class="item" *ngFor="let id of order.ProductIds;let i=index">
+
+      <div>
+        <md-select placeholder="服务校区" [(ngModel)]="order.campus[i]" (change)="addCampus(i,id)">
+          <md-option *ngFor="let campus of campus$|async" [value]="campus.Id">
+            {{ campus.CampusName }}
+          </md-option>
+        </md-select>
+      </div>
+      <div>
+        <span>课程：</span>
+        <span class="gray">
+          {{order.details[id].productName}}
+        </span>
+
+      </div>
+      <div>
+        <span>价格：</span>
+        <span class="now-price14">
+          <span class="now-price-tag">¥</span>
+          <span>{{order.details[id].discountPrice}}</span>
+        </span>
+        <del class="origin-price">¥{{order.details[id].price}}</del>
+      </div>
+
+      <div>
+        <span>优惠政策：</span>
+        <span class="gray">
+          {{order.details[id].couponName==null?"无优惠":order.details[id].couponName}}
+        </span>
+
+      </div>
+      <div>
+        <md-input-container style="width:50px;">
+          <input type="number" placeholder="数量" mdInput [(ngModel)]="order.count[i]" (change)="changeCount(i,id)">
+        </md-input-container>
+      </div>
+      <div>
+        <md-input-container style="width:50px;">
+          <input type="number" placeholder="实付金额" mdInput [(ngModel)]="order.actualpay[i]" (change)="changeActualpay(i,id)">
+        </md-input-container>
+      </div>
+      <div>
+        <md-checkbox class="status" [checked]="order.details[id].IsDebt" (click)="onCheckboxClick($event)" (change)="cancelDebt(id)">欠费
+        </md-checkbox>
+        <md-input-container style="width:50px;">
+          <input type="number" placeholder="欠费金额" [disabled]="!order.details[id].IsDebt" mdInput [(ngModel)]="order.debt[i]" (change)="changeDebt(i,id)">
+        </md-input-container>
+      </div>
+
+      <div>
+        <span>优惠金额：</span>
+        <span class="gray">¥{{order.details[id].discount}}</span>
+      </div>
+      <div>
+        <md-checkbox *ngIf="order.details[id].isCanOld" class="status" [checked]="order.details[id].IsDiscountForOld" (click)="onCheckboxClick($event)" (change)="changeOld(id)">老学员
+        </md-checkbox>
+      </div>
+
+
+    </div>
+  </div>
+  <div>
+    <div class="item bottom">
+
+      <span class="now-price16">
+        <span>优惠价：</span>
+        <span class="now-price-tag">¥</span>
+        <span>{{order.discountPrice}}</span>
+      </span>
+      <del class="origin-price">
+        <span>原价：</span>
+        ¥{{order.price}}
+      </del>
+      <span class="now-price16">
+        <span>应付：</span>
+        <span class="now-price-tag">¥</span>
+        <span>{{order.ActualPay}}</span>
+      </span>
+      <span class="now-price-green">
+        <span>已收：</span>
+        <span class="now-price-tag">¥</span>
+        <span>{{order.pay}}</span>
+      </span>
+      <span class="now-price16" *ngIf="order.IsDebt">
+        <span>欠费金额：</span>
+        <span class="now-price-tag">¥</span>
+        <span>{{order.Debt}}</span>
+      </span>
+      <span *ngIf="order.IsOtherDiscount">
+        <span>特殊优惠：</span>
+        <span class="gray">¥{{order.OtherDiscountValue}}</span>
+      </span>
+      <md-input-container>
+        <input type="text" placeholder="备注" mdInput [(ngModel)]="order.Remark" (change)="addRemark()">
+      </md-input-container>
+      <md-input-container>
+        <input type="text" placeholder="收据编号*" mdInput [(ngModel)]="order.TradeNO" (change)="addTradeNO()">
+      </md-input-container>
+      <md-select placeholder="收款方式*" [(ngModel)]="Channel" (change)="addChannel()">
+        <md-option *ngFor="let channel of channels" [value]="channel.id">
+          {{ channel.name }}
+        </md-option>
+      </md-select>
+      <span>
+        <span *ngFor="let pay of order.Cashiers">{{channels[pay.Channel].name+":"+pay.Value}}</span>
+      </span>
+    </div>
+    <div class="line">
+
+    </div>
+
+  </div>

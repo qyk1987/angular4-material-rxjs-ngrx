@@ -1,0 +1,18 @@
+<div [formGroup]="chips" class="full-width">
+  <span>{{label}}</span>
+  <md-chip-list>
+    <md-chip selected="true" color="primary" *ngFor="let member of items">
+        {{member.CouponName}} <span class="remove-tag"  (click)="removeMember(member)">x</span>
+    </md-chip>
+  </md-chip-list>
+   <md-select
+        *ngIf="displayInput"
+        class="full-width"
+        placeholder="请选择优惠券"
+        formControlName="memberSelect"
+        >
+        <md-option *ngFor="let item of memberResults$|async" [value]="item">
+          {{ item.CouponName }}
+        </md-option>
+  </md-select>
+</div>

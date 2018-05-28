@@ -1,0 +1,12 @@
+<form  #f="ngForm" (ngSubmit)="onSubmit($event,f)">
+    <h2 md-dialog-title>添加优惠券适用产品</h2>
+    <div md-dialog-content>
+        <app-product-chips-list [label]="'添加产品'"  name="members"  [(ngModel)]="members">
+        </app-product-chips-list>
+    </div>
+    <div md-dialog-actions>
+        <button md-raised-button color='primary' type="submit" [disabled]="!f.valid">保存</button>
+        <button md-dialog-close md-button  type="button">关闭</button>
+    </div>
+  
+  </form>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div *ngIf="length>0">
+      <app-table
+      [setting]="setting"
+      [data]="diplomas$|async"
+      (clickItem)="handleClickItem($event)"
+      (addItem)="handleAdd()"
+      (delItem)="handleDel($event)"
+    >
+
+    </app-table>
+    <app-page 
+    
+    (change)="handlePageChange($event)"
+    >
+    </app-page>
+  </div>
+
+  <div *ngIf="length==0">
+    <span>目前没有数据</span>
+    <md-icon>forma_list_bulleted</md-icon>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+
+<div >
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+    <div class="chart-container" >
+      <div style="width:100%">
+       <div echarts [options]="chartOption"  [loading]="isLoading" class="demo-chart"></div>
+      </div>
+    </div>
+    
+  </div>
+  <div md-dialog-actions>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+
+</div>

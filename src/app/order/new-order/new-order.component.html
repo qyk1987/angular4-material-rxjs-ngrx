@@ -1,0 +1,33 @@
+<form [formGroup]="form"  >
+    <h2 md-dialog-title>{{title}}</h2>
+    <div md-dialog-content  class="content">
+        <div class="header" >
+            <div class="product">
+                <app-product-chips-list
+                    [label]="'添加产品:'"   name="products"  formControlName="products"
+                >            
+                </app-product-chips-list>  
+            </div>
+            <div class="student" *ngIf="!edit">               
+                <app-student-chips-list
+                    [label]="'添加学生:'" [isLoadOrder]="true" [isRewrite]="true"  name="students"  formControlName="students"
+                >            
+                </app-student-chips-list>               
+            </div>
+           
+        </div>
+        <div>
+            
+                <app-order-input *ngFor="let order of orders$|async;let i=index" [order]="order" [index]="i+1">
+
+                </app-order-input>
+        </div>
+    </div>
+    <div md-dialog-actions>
+        <button md-raised-button color='primary' type="button" [disabled]="(length$|async)<=0" (click)="saveOrders()">保存</button>
+        <button md-dialog-close md-button  type="button">关闭</button>
+        <div *ngIf="error" class="error">
+           {{errortext}}
+        </div>
+    </div>
+  </form>

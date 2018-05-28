@@ -1,0 +1,133 @@
+<div class="container" style="flex-direction: row;">
+  <div class="side">
+    <md-nav-list>
+      <md-list-item *ngFor="let student of students$|async"
+      (click)="selectStudent(student)"
+      >
+        
+        <h3 md-line>{{student.Name}}</h3>
+        <p md-line>
+          <span>
+            {{student.school}}
+          </span>
+          <span>
+            {{student.gradeName}}
+          </span>
+        </p>
+      </md-list-item>
+    </md-nav-list>
+  </div>
+  <div class="main">
+    <div class="header">
+      <md-icon routerLink="/student">arrow_back</md-icon>
+      <button md-button type="button" (click)="onEditClick()">
+        <md-icon >note</md-icon>
+        <span>编辑</span>
+      </button>
+      <!-- <button md-button type="button" (click)="onAddOrderClick()">
+        <md-icon >school</md-icon>
+        <span>报名</span>
+      </button> -->
+      <button md-button type="button" (click)="onAddCertificateClick()">
+        <md-icon >school</md-icon>
+        <span>添加证书</span>
+      </button>
+      <button md-button type="button" (click)="onUploadImageClick()">
+        <md-icon >school</md-icon>
+        <span>上传证件照</span>
+      </button>
+      <button md-button type="button" (click)="onUploadCardClick()">
+        <md-icon >school</md-icon>
+        <span>上传身份证</span>
+      </button>
+     
+    </div>
+    <div class="content">
+      <div class="picture">
+        <img [src]="(stu$|async).image"  *ngIf="(stu$|async).sex=='famale'" onError="this.src='http://p1szdp1zg.bkt.clouddn.com/fyimg/famale.jpg'" alt="证件照">
+        <img [src]="(stu$|async).image" *ngIf="(stu$|async).sex=='male'" onError="this.src='http://p1szdp1zg.bkt.clouddn.com/fyimg/male.jpg'"  alt="证件照">
+      </div>
+      <div class="idcard">
+          <img [src]="(stu$|async).card"   onError="this.src='http://p1szdp1zg.bkt.clouddn.com/fycard/default.jpg'" alt="身份证">
+      </div>
+      <div class="info">
+         <p md-line>
+           <label >姓名：</label>
+           <span>{{(stu$|async).Name}}</span>
+         </p>
+         <p md-line>
+          <label >性别：</label>
+          <span>{{(stu$|async).sex|sex }}</span>
+        </p>
+        <p md-line>
+          <label >学校：</label>
+          <span>{{(stu$|async).school}}</span>
+        </p>
+        <p md-line>
+          <label >年级：</label>
+          <span>{{(stu$|async).gradeName}}</span>
+        </p>
+        <p md-line>
+          <label >专业：</label>
+          <span>{{(stu$|async).majorName}}</span>
+        </p>
+        <p md-line>
+          <label >班级：</label>
+          <span>{{(stu$|async).ClassName}}</span>
+        </p>
+      </div>
+      <div class="info">
+        <p md-line>
+          <label >QQ：</label>
+          <span>{{(stu$|async).QQ}}</span>
+        </p>
+        <p md-line>
+         <label >手机：</label>
+         <span>{{(stu$|async).MobilePhoneNO}}</span>
+       </p>
+       <p md-line>
+         <label >身份证号：</label>
+         <span>{{(stu$|async).IdCardNO}}</span>
+       </p>
+       <p md-line>
+         <label >所在地：</label>
+         <span>{{(stu$|async).Province}}{{(stu$|async).City}}{{(stu$|async).District}}</span>
+       </p>
+       <p md-line>
+         <label >工作/学习单位：</label>
+         <span>{{(stu$|async).WorkPlace}}</span>
+       </p>
+     
+     </div>
+      <div class="certificate">
+        <h3>已有证书</h3>
+        <md-list>
+          <md-list-item *ngFor="let diploma of diplomas$|async ">
+           <span>{{diploma.diplomName}}</span> <span>{{diploma.CreateTime| amLocale:'zh-cn' | amDateFormat:'YYYY-MM-DD'}}</span> 
+           <button md-icon-button type="button" (click)="onEditDiplomaClick(diploma)">
+            <md-icon >edit</md-icon>
+            </button>
+          </md-list-item>
+        </md-list>
+      </div>
+      <div class="custom">
+        <h3>参加项目</h3>
+        <md-list>
+          <md-list-item *ngFor="let order of orders$|async ">
+            <p *ngFor="let product of order.products"><span>{{product.ProductName}}</span> <span>{{order.date| amLocale:'zh-cn' | amDateFormat:'YYYY-MM-DD'}}</span></p>
+             
+          </md-list-item>
+        </md-list>
+      </div>
+      <div class="free">
+        <app-schedule
+        [cols]="7"
+        [title]="'空余时间：'"
+        [items]="(stu$|async).scheduleItems"
+        [onlyShow]="true"
+      >
+      </app-schedule>
+      </div>
+    </div>
+  </div>
+</div>

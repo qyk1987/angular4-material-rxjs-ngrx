@@ -21,7 +21,15 @@
       "styles": [
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/qiniu-js/src/plupload/moxie.js",
+        "../node_modules/qiniu-js/src/plupload/plupload.dev.js",
+
+        "../node_modules/qiniu-js/dist/qiniu.min.js",
+        "../node_modules/echarts/dist/echarts.min.js",
+        "../node_modules/echarts/theme/macarons.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -1,0 +1,69 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+    <h2 md-dialog-title>{{title}}</h2>
+    <div md-dialog-content>
+        <div md-line >
+                <md-input-container  >
+                        <input mdInput type="text" placeholder="产品名称" formControlName="ProductName">
+                </md-input-container>
+                <md-input-container   class="mgr15 wd150">
+                        <input mdInput type="number" placeholder="产品价格" formControlName="Price">
+                </md-input-container>
+        </div>
+        <div md-line class="line">
+                <md-input-container class="full-width" >
+                        <input mdInput type="text" placeholder="产品描述" formControlName="Desc">
+                </md-input-container>
+        </div>
+       
+       
+        
+        
+       
+        <div md-line class="line">
+            <md-slide-toggle   formControlName="IsDiscountForOld">老学员优惠</md-slide-toggle>
+            <md-input-container class="mgr15 wd150"  >
+                <input mdInput type="number"   placeholder="优惠金额" formControlName="DiscountValue">
+            </md-input-container>
+
+        </div>
+        <div md-line  class="line">
+                <app-product-chips-list 
+                [label]="'添加优惠依据产品:'"   name="products"  formControlName="products"
+            >            
+            </app-product-chips-list>  
+        </div>
+
+        <div md-line class="line">
+            <md-slide-toggle   formControlName="IsPackage">套餐</md-slide-toggle>
+            
+                <app-product-chips-list 
+                    [label]="'添加套餐产品:'"   name="packageproducts"  formControlName="packageproducts"
+                >            
+                </app-product-chips-list>  
+            
+        </div>
+         <div md-line class="line">
+            <app-service-chips-list  
+                        [label]="'添加服务:'"   name="services"  formControlName="Services"
+                    >            
+            </app-service-chips-list> 
+        </div>
+         <div md-line class="line">
+            <app-coupon-chips-list 
+                [label]="'添加优惠券:'"   name="coupons"  formControlName="Coupons"
+            >            
+            </app-coupon-chips-list> 
+        </div>
+       
+        <md-slide-toggle   formControlName="IsNeedCardNo">强制身份证号</md-slide-toggle>
+        <md-slide-toggle  *ngIf="data.product" formControlName="State">上架</md-slide-toggle>
+    </div>
+   
+    
+    <div md-dialog-actions>
+        <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+        <button md-dialog-close md-button  type="button">关闭</button>
+    </div>
+  
+  </form>

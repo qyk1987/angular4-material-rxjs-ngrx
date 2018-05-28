@@ -1,0 +1,38 @@
+<md-card>
+  <md-card-header (click)="ondueDetail($event)" [ngClass]="{'nopay': item.State===0,'wait': item.State===1,'pay': item.State===2,'debt': item.State===3,'compensation': item.State===4}">
+      <span>提交人：</span><span class="dark">{{item.PosterName}}</span>
+      <span class="margin-left" *ngIf="item.State<2" >下单时间：<span class="dark">{{item.CreateTime| amAdd: 8 : 'hours' | amDateFormat:'YY-MM-DD HH:mm'}}</span></span>
+      <span class="margin-left" *ngIf="!(item.State<2)">处理时间：<span class="dark">{{item.ConfirmTime| amAdd: 8 : 'hours' | amDateFormat:'YY-MM-DD HH:mm'}}</span></span>
+  </md-card-header>
+  <md-card-content (click)="ondueDetail($event)">
+    <div md-line class="value"  >
+      ￥{{item.Value}}
+    </div>
+    <div md-line class="bottom-bar">
+      <button md-raised-button color='accent'  [disabled]="!item.cansms" *ngIf="item.State===0" (click)="onremindAccount($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>{{item.cansms?'提醒结账':'今日已提醒'}}</span>
+      </button>
+      <button md-raised-button color='accent' *ngIf="item.State===1" (click)="ondueAccount($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>结账</span>
+      </button>
+      <!-- <button md-raised-button color='accent' *ngIf="item.State===1" (click)="ondueBack($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>打回</span>
+      </button> -->
+      <button md-raised-button color='accent' *ngIf="item.State===2" (click)="ondueDetail($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>查看详细</span>
+      </button>
+      <button md-raised-button color='accent' *ngIf="item.State===3" (click)="onpromptCompensation($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>催费</span>
+      </button>
+      <button md-raised-button color='accent' *ngIf="item.State===4" (click)="ondueCompensation($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>结账</span>
+      </button>
+    </div>
+  </md-card-content>
+</md-card>

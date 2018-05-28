@@ -1,0 +1,22 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+    <h2 md-dialog-title>{{title}}</h2>
+    <div md-dialog-content>
+       
+        <md-input-container class="mgr15 wd150">
+            <input mdInput type="text" placeholder="校区名称" formControlName="SpotName">
+        </md-input-container>
+        
+          <md-input-container class="mgr15 wd150">
+              <input mdInput type="text" placeholder="校区地址" formControlName="SpotAddress">
+          </md-input-container>
+          <md-slide-toggle  *ngIf="data.spot" formControlName="SpotState">是否可用</md-slide-toggle>
+    </div>
+   
+    
+    <div md-dialog-actions>
+        <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+        <button md-dialog-close md-button  type="button">关闭</button>
+    </div>
+  
+  </form>

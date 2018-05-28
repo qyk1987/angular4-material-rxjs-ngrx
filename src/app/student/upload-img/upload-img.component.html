@@ -1,0 +1,25 @@
+<form >
+    <h2 md-dialog-title>{{title}}</h2>
+    <div md-dialog-content>
+        <input type="hidden" [value]="filename" id="filename">
+        <img [src]="data.student.image" [ngClass]="{'picture':data.type=='fyimg','idcard':data.type=='fycard'}"  *ngIf="data.type=='fyimg'&&data.student.sex=='famale'" onError="this.src='http://p1szdp1zg.bkt.clouddn.com/fyimg/famale.jpg'" alt="证件照">
+        <img [src]="data.student.image" [ngClass]="{'picture':data.type=='fyimg','idcard':data.type=='fycard'}"  *ngIf="data.type=='fyimg'&&data.student.sex=='male'" onError="this.src='http://p1szdp1zg.bkt.clouddn.com/fyimg/male.jpg'"  alt="证件照">
+        <img [src]="data.student.card" [ngClass]="{'picture':data.type=='fyimg','idcard':data.type=='fycard'}"  *ngIf="data.type=='fycard'" onError="this.src='http://p1szdp1zg.bkt.clouddn.com/fycard/default.jpg'"  alt="身份证">
+        <div id="container">
+        
+            <button color="accent" md-raised-button type="button" id="pickfiles">
+                <md-icon class="search">folder_open</md-icon>
+                选择照片
+            </button>
+            <button color="accent" md-raised-button type="button" id="up_load">
+                <md-icon class="search">file_upload</md-icon>
+                确认上传
+            </button>
+          
+        </div>
+    </div>
+   
+    <div md-dialog-actions>
+        <button md-dialog-close md-button (click)="onClick()" type="button">关闭</button>
+    </div>
+</form>

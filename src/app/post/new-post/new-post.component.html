@@ -1,0 +1,57 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+     
+         <md-input-container class="mgr15 wd150">
+            <input mdInput type="text" placeholder="岗位名称" formControlName="PostName">
+        </md-input-container>
+        <md-select placeholder="岗位角色*"  formControlName="RoleId" >
+            <md-option *ngFor="let role of roles$| async" [value]=role.Id 
+            >
+            {{role.Label}}
+            </md-option>
+          </md-select>
+        <md-select placeholder="上级岗位"  formControlName="SupperId" >
+            <md-option *ngFor="let post of tempposts" [value]=post.Id 
+            >
+            {{post.PostName}}
+            </md-option>
+        </md-select>
+        <app-chips-list
+        formControlName="users"
+        [label]="'添加职员:'"   
+        name="users"
+        [multiple]="false"
+        >
+
+        </app-chips-list>
+        <p></p>
+        <md-select placeholder="所属大区"  formControlName="DistrictId" >
+            <md-option *ngFor="let district of districts$| async" [value]=district.Id 
+            >
+            {{district.DistrictName}}
+            </md-option>
+        </md-select>
+        <md-select placeholder="所属校区"  formControlName="CampusId" >
+            <md-option *ngFor="let campus of campus$| async" [value]=campus.Id 
+            >
+            {{campus.CampusName}}
+            </md-option>
+        </md-select>
+        <md-select placeholder="所属服务点"  formControlName="SpotId" >
+            <md-option *ngFor="let spot of spots$| async" [value]=spot.Id 
+            >
+            {{spot.SpotName}}
+            </md-option>
+        </md-select>
+        <md-slide-toggle  *ngIf="data.post" formControlName="State">是否可用</md-slide-toggle>
+  </div>
+ 
+  
+  <div md-dialog-actions>
+      <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+
+</form>

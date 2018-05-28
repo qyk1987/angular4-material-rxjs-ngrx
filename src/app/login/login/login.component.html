@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+    <md-card>
+      
+      <md-card-header>
+        <md-card-title>登录</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-input-container   class="full-width" color="accent">
+          <input mdInput type="text" placeholder="您的用户名" formControlName="email">
+        </md-input-container>
+        <md-input-container class="full-width"   color="accent">
+            <input mdInput [type]="inputType" placeholder="您的密码" formControlName="password">
+            <button *ngIf="!visible" type="button" md-icon-button mdSuffix (click)="show()">
+              <md-icon>visibility</md-icon>
+            </button>
+            <button *ngIf="visible" type="button" md-icon-button mdSuffix (click)="hide()">
+              <md-icon>visibility_off</md-icon>
+            </button>
+        </md-input-container>
+        <button md-raised-button color='accent' type="submit">登录</button>
+        <span class="error" *ngIf="(auth$|async).error">{{(auth$|async).text}}</span>
+      </md-card-content>
+      <md-card-actions class="text-right">
+        <p>还没有账户?<a routerLink="/verify">注册</a></p>
+        <p>忘记密码？<a routerLink="/forget">找回密码</a></p>
+      </md-card-actions>
+    </md-card>
+
+    <md-card  class="quote">
+        <md-card-header>
+          <md-card-title>每日佳句</md-card-title>
+          <md-card-subtitle>
+             {{(quote$ | async).cn}}
+          </md-card-subtitle>
+        </md-card-header>
+        <img md-card-image [src]="(quote$ | async).pic" alt="quote image">
+        <md-card-content>
+          {{(quote$ | async).en}}
+        </md-card-content>
+      
+      </md-card>
+</form>

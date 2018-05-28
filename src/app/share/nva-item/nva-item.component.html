@@ -1,0 +1,13 @@
+<md-list-item (click)="onSlideClick()">
+  <span class="sidenav-item-name" >{{item.name}}</span>
+  <span fxflex="" style="flex: 1 1 1e-09px; box-sizing: border-box;"></span>
+  <md-icon *ngIf="!item.isopen" >expand_more</md-icon>
+  <md-icon *ngIf="item.isopen" >expand_less</md-icon>
+</md-list-item>
+<md-nav-list *ngIf="item.isopen">
+  <md-list-item *ngFor="let list of item.lists" 
+     [ngClass]="{'selected':list.selected}"
+    (click)="onItemClcik(list)">
+    <span> <span>{{list.name}}</span><span *ngIf="hasCount">{{list.count}}</span></span>
+  </md-list-item>
+</md-nav-list>

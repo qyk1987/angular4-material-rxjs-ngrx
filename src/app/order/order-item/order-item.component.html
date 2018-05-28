@@ -1,0 +1,90 @@
+<md-card *ngIf="card">
+        <md-card-header [ngClass]="{'nopay': item.State===0,'wait': item.State===1,'pay': item.State===2,'debt': item.State===3,'compensation': item.State===4}">
+                <span>报名学生：</span>
+                <span class="dark">{{item.student.Name+'['+(item.student.IdCardNO|slice:14)+']'}}</span>
+                <span class="margin-left">收据编号：</span>
+                <span class="dark">{{item.TradeNO}}</span>
+        </md-card-header>
+        <md-card-content>
+                <div class="item">
+                        <div>
+                                <ul>
+                                        <li *ngFor="let product of item.products;let i=index">
+                                                {{product.ProductName}}
+                                        </li>
+                                </ul>
+                        </div>
+                        <div class=" price">
+                                <span>￥{{item.ActualPay}}</span>
+                        </div>
+                </div>
+                <div class="item">
+
+                        <ul>
+                                <li *ngFor="let pay of item.Cashiers;let i=index">
+                                        <div class=" channel">
+                                                <img class="channelicon" [ngClass]="{'alipay': pay.Channel===0,'wechat': pay.Channel===1,'cash': pay.Channel===2,'bank': pay.Channel===3,'credit': pay.Channel===4}"
+                                                        [src]="channels[pay.Channel].src" />
+                                                <span>{{channels[pay.Channel].name}}</span>
+                                                <span>{{pay.Value}}</span>
+                                        </div>
+                                </li>
+                        </ul>
+
+
+
+                        <div>
+                                <span class="margin-left">下单时间：</span>
+                                <span class="dark">{{item.OrderDate| amAdd: 8 : 'hours' | amDateFormat:'YYYY-MM-DD HH:mm'}}</span>
+                        </div>
+                </div>
+                <div class="item" *ngIf="item.IsDebt">
+                        <div class=" hasdebt">
+                                欠费：￥
+                                <span>{{item.Debt}}</span>
+                        </div>
+                        <div class=" cps">
+                                <ul>
+                                        <li *ngFor="let com of item.Compensations;let i=index">
+                                                <span>￥{{com.Value}}</span>
+                                                <span>{{com.CreateTime| amAdd: 8 : 'hours' | amDateFormat:'YYYY-MM-DD'}}</span>
+                                                <button md-icon-button color='accent' *ngIf="!com.State" (click)="editCompensation(com,item.Debt)">
+                                                        <md-icon>edit</md-icon>
+                                                </button>
+                                                <button md-icon-button color='accent' *ngIf="!com.State" (click)="delCompensation(com)">
+                                                        <md-icon>delete</md-icon>
+                                                </button>
+
+                                        </li>
+                                </ul>
+                        </div>
+                </div>
+
+
+
+
+
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button color='primary' *ngIf="item.State===0" (click)="applyAccount()">
+                        <md-icon>add_shopping_cart</md-icon>
+                        <span>申请结账</span>
+                </button>
+                <!-- <button md-raised-button color='primary' *ngIf="item.State===0" (click)="editOrder()">
+                    <md-icon>edit</md-icon>
+                    <span>改单</span>
+        </button> -->
+                <button md-raised-button color='accent' *ngIf="item.State===0||item.State===1" (click)="delOrder()">
+                        <md-icon>delete</md-icon>
+                        <span>撤单</span>
+                </button>
+                <button md-raised-button color='accent' *ngIf="item.State===3" (click)="compenssion()">
+                        <md-icon>widgets</md-icon>
+                        <span>补费</span>
+                </button>
+        </md-card-actions>
+</md-card>
+
+<div *ngIf="!card">
+        
+</div>

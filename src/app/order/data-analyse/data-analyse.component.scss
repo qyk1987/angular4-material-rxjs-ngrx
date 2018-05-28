@@ -1,0 +1,32 @@
+:host {
+    width: 100%!important;
+    height: 100%!important;
+    position: inherit!important;
+  }
+  .content-container{
+    width:80%;
+    
+  }
+  .demo-chart {
+    height: 400px;
+  }
+  .chart-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+  }
+  .pie{
+    height:360px;
+    width: 360px;
+  }
+  @media screen and (max-width: 900px) { 
+    .demo-chart {
+      height: 260px;
+    }  
+    .content-container{
+      width:95%;
+      
+    }
+} 

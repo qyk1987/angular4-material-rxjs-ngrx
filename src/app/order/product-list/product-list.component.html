@@ -1,0 +1,30 @@
+
+  <div class="container">
+    <md-tab-group [dynamicHeight]="true" [selectedIndex]="selectedTab" (selectChange)="onTabChange($event.index)">
+      <md-tab class="tab" [label]="category.CategoryName" *ngFor="let category of categorys$|async">
+        <!-- <div class="container" [@listAnim]="listAnim$ | async"> -->
+        <div class="content" >
+          <app-product-item
+            class="card"
+            *ngFor="let product of (products$ | async)"
+            [item]="product"
+            
+            (launchInviteDailog)="openInviteDialog(product)">
+          </app-product-item>
+        </div>
+        <!-- <div class="container" >
+            <app-product-item
+              class="card"
+              *ngFor="let product of (products$ | async)"
+              [item]="product"
+              (itemSelected)="selectProject(product)"
+              (launchUpdateDialog)="openUpdateDialog(product)"
+              (launchInviteDailog)="openInviteDialog(product)"
+              (launchDeleteDailog)="openDeleteDialog(product)">
+            </app-product-item>
+          </div> -->
+      </md-tab>
+    </md-tab-group>
+  
+  </div>
+  

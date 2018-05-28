@@ -1,0 +1,73 @@
+<div>
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content  class="content">
+        <div class="header"> 
+                <span class="item"><label for="">建单时间：</label>{{data.details.CreateTime| amAdd: 8 : 'hours' | amDateFormat:'YY-MM-DD HH:mm'}}</span>
+                <span class="item"><label for="">建单人：</label>{{data.details.PosterName}}</span>
+                <span class="item"><label for="">单据状态：</label>{{data.details.State}}</span>
+                <span class="item" *ngIf="data.details.State=='已结清'||data.details.State=='有欠费'||data.details.State=='补费待结'"><label for="">结账会计：</label>{{data.details.ConfirmerName}}</span>
+                <span class="item" *ngIf="data.details.State=='已结清'||data.details.State=='有欠费'||data.details.State=='补费待结'"><label for="">结账时间：</label>{{data.details.ConfirmTime| amAdd: 8 : 'hours' | amDateFormat:'YY-MM-DD HH:mm'}}</span>
+               
+        </div>
+        <md-tab-group [dynamicHeight]="true" [selectedIndex]="selectedTab" (selectChange)="onTabChange($event.index)">
+                <md-tab class="tab" label="名单"  >
+                        <div *ngIf="data.details.Orders!==null">
+                                <app-table 
+                                [setting]="orderSetting"
+                                [data]="orders"
+                                >
+                                    
+                                </app-table>
+                        
+                            </div>
+                            <div *ngIf="data.details.Fees!==null">
+                                <app-table 
+                                [setting]="feeSetting"
+                                [data]="data.details.Fees"
+                                >
+                                    
+                                </app-table>
+                            </div>
+                    
+                </md-tab>
+                <md-tab class="tab" label="数据统计"  >
+                        <div *ngIf="data.details.Orders!==null">
+                                <app-table 
+                                 [setting]="nameSetting"
+                                 [data]="dest1"
+                                >
+                                    
+                                </app-table>
+                        
+                        </div>
+                        <div *ngIf="data.details.Orders!==null">
+                                <app-table 
+                                 [setting]="channelSetting"
+                                 [data]="dest2"
+                                >
+                                    
+                                </app-table>
+                        
+                        </div>
+                        
+                </md-tab>
+                <md-tab class="tab" label="数据分析"  >
+                        <!-- <div class="chart-container" >
+                                <div class="pie">
+                                    <div echarts [options]="pie1chartOption"  [loading]="pieLoading1" ></div>
+                                </div>
+                                <div class="pie">
+                                    <div echarts [options]="pie2chartOption"  [loading]="pieLoading2" ></div>
+                                </div>
+                                <div class="pie">
+                                    <div echarts [options]="pie3chartOption"  [loading]="pieLoading3" ></div>
+                                </div>
+                        </div> -->
+                </md-tab>
+        </md-tab-group>
+   
+  <div md-dialog-actions>
+      <button md-raised-button color='accent' *ngIf="data.account" type="button" [disabled]="!(data.state==1&&data.state==4)" (click)="account()">结账</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+</div>

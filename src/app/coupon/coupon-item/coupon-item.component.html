@@ -1,0 +1,48 @@
+<md-card>
+  <md-card-header  [ngClass]="{'normal': item.State,'expire': !item.State}">
+      <span class="dark">{{item.CouponName}}</span>
+      <span class="margin-left">生效时间：</span><span class="dark">{{item.StartDate| amLocale:'zh-cn' | amDateFormat:'YYYY-MM-DD'}}</span>
+      <span class="margin-left">失效时间：</span><span class="dark">{{item.OverDate| amLocale:'zh-cn' | amDateFormat:'YYYY-MM-DD'}}</span>
+  </md-card-header>
+  <md-card-content  [ngClass]="{'expire': !item.State}">
+    <div>
+      <div>
+        {{item.Vlaue}}
+      </div>
+      <div>
+        {{item.Rule}}
+      </div>
+    </div>
+    <div>
+      <div>
+        <h4>适用产品：</h4>
+        <ul>
+          <li *ngFor="let product of item.Products">{{product.ProductName}}</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h4>适用校区：</h4>
+      <span *ngFor="let campus of item.Campuses">[{{campus.CampusName}}]</span>
+    </div>
+    <div md-line class="bottom-bar" *ngIf="item.State">
+      <button md-raised-button color='accent'  (click)="onaddProduct($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>添加产品</span>
+      </button>
+      <button md-raised-button color='accent'  (click)="onaddCampus($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>添加校区</span>
+      </button>
+      <button md-raised-button color='accent'  (click)="oneditCoupon($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>编辑</span>
+      </button>
+      <button md-raised-button color='accent'  (click)="ondeleteCoupon($event)">
+                    <md-icon>settings_remote</md-icon>
+                    <span>删除</span>
+      </button>
+
+    </div>
+  </md-card-content>
+</md-card>

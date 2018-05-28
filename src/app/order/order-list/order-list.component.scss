@@ -1,0 +1,18 @@
+:host {
+    width: 100%!important;
+    height: 100%!important;
+    position: inherit!important;
+  }
+
+  .container{
+      display: flex;
+      flex-direction: row;
+      margin-top:20px;
+
+  }
+  .side{
+      width:30%;
+  }
+  .content{
+      width:65%;
+  }

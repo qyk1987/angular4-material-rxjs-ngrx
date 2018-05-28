@@ -1,0 +1,43 @@
+<div class="container">
+  <md-tab-group [dynamicHeight]="true" [selectedIndex]="selectedTab" (selectChange)="onTabChange($event.index)">
+      <md-tab class="tab" [label]="label"  *ngFor="let label of labels">
+        <div class="content" >
+              <md-input-container  class="p70-width" *ngIf="length>0" >
+                  <input mdInput type="text" placeholder="搜索订单/订单号/学生/收据编号" [(ngModel)]="key">
+                  <button mdSuffix md-icon-button type="button">
+                    <md-icon class="search" (click)="handleSearch()">search</md-icon>
+                  </button>
+              </md-input-container>
+              <div class="no-list" *ngIf="length<=0">
+                      <span>目前没有该类单据</span>
+                      <md-icon>forma_list_bulleted</md-icon>
+              </div>
+            <div class="item-container">
+                <app-receipt-item
+                class="card"
+                *ngFor="let receipt of (receipts$ | async)"
+                [item]="receipt"
+                (dueAccount)="handledueAccount(receipt)"
+                (dueBack)="handledueBack(receipt)"
+                (onCompenssion)="handleCompenssion(receipt)"
+                (itemSelected)="handleDetail(receipt)"
+                (onEdit)="handleEdit(receipt)"
+                (onEditCps)="handleEditCps($event)"
+                (onDelCps)="handleDelCps($event)"
+                (remindAccount)="handleRemind(receipt)"
+              >
+      
+              </app-receipt-item>
+            </div>  
+            
+           
+        </div>
+      </md-tab>
+    </md-tab-group>
+    <app-page 
+    
+    (change)="handlePageChange($event)"
+    >
+    </app-page>
+</div>
+

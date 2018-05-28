@@ -1,0 +1,35 @@
+
+span{
+    //margin-left: 15px;
+    //padding: 15px;
+    color: #666;
+    font-size: 14px;
+    border: 1px dashed #b7b7b7;
+    padding: 4px 8px 4px 8px;
+    cursor: pointer;
+    background: #fff;
+    margin-top: 10px;
+}
+.selected{
+    background-color:#ff4081;
+    color: white;
+}
+
+span:hover{
+    //padding: 15px;
+    color: #000;
+  
+    background: #ddd;
+}
+label{
+    width:60px;
+    text-align: right;
+    padding: 4px 8px 4px 8px;
+    
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: max-content;
+}

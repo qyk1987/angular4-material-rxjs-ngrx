@@ -1,0 +1,50 @@
+
+
+<div class="container">
+    <div class="side">
+        <div>
+            <button md-raised-button color='accent'  (click)="openTreeDialog($event)">
+              <md-icon>settings_remote </md-icon>
+              <span>查看结构图</span>
+            </button>
+            <button md-raised-button color='accent'  (click)="addCategory()">
+                <md-icon>add</md-icon>
+                <span>新增类别</span>
+              </button>
+        </div>
+        <app-menu-tree  [items]="menu$|async" [root]='true'
+         (select)="handleSelect($event)"
+         (add)="handleAdd($event)"
+         (edit)="handleEdit($event)"
+         (delete)="handleDel($event)"
+        >
+            
+        </app-menu-tree>
+    </div>
+    <div class="content">
+        <button md-raised-button color='accent' *ngIf="level==1"  (click)="addProduct()">
+                    <md-icon>add</md-icon>
+                    <span>新增产品</span>
+        </button>
+        <app-table
+        [setting]="setting"
+        [data]="products$|async"
+        (clickItem)="handleClickItem($event)"
+        (editItem)="handleEditPrd($event)"
+        (delItem)="handleDelPrd($event)"
+        >
+  
+        </app-table>
+        <app-page 
+        
+        (change)="handlePageChange($event)"
+        >
+        </app-page>
+        <div *ngIf="length==0">
+            <span>目前没有数据</span>
+            <md-icon>forma_list_bulleted</md-icon>
+          </div>
+    </div>
+    
+  
+    </div>

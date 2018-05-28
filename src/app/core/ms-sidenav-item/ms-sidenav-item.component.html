@@ -1,0 +1,14 @@
+<md-list-item (click)="onItemClcik()">
+  <md-icon *ngIf="item.icon.issvg"  [svgIcon]="item.icon.icon"></md-icon>
+  <md-icon *ngIf="!item.icon.issvg" >{{item.icon.icon}}</md-icon>
+  <span class="sidenav-item-name" >{{item.name}}</span>
+  <span fxflex="" style="flex: 1 1 1e-09px; box-sizing: border-box;"></span>
+  <md-icon *ngIf="!item.isopen" >expand_more</md-icon>
+  <md-icon *ngIf="item.isopen" >expand_less</md-icon>
+</md-list-item>
+<md-nav-list *ngIf="item.isopen">
+  <md-list-item *ngFor="let list of item.lists" 
+     [routerLink]="list.link">
+    <span>{{list.name}} </span>
+  </md-list-item>
+</md-nav-list>

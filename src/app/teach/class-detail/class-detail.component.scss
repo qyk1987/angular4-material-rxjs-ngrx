@@ -1,0 +1,66 @@
+:host {
+    width: 100%!important;
+    height: 100%!important;
+    position: inherit!important;
+  }
+  .container{
+
+  }
+  .overview-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .overview-list{
+
+  }
+  .overview-card-wrapper{
+    margin: 15px auto;
+    border-right: 1px solid #e6e9f0;
+    height: 120px;
+    overflow: visible;
+    display: block;
+    padding: 0 20px;
+  }
+  .ant-card-head{
+    height: 48px;
+    line-height: 48px;
+    background: #fff;
+    //border-bottom: 1px solid #e9e9e9;
+    padding: 0 24px;
+  }
+  .overview-card .ant-card-head {
+    border-bottom: 0;
+}
+  .overview-card .ant-card-head .ant-card-head-title {
+    line-height: 48px;
+    font-weight: 400;
+}
+.ant-card-head-title {
+    font-size: 16px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+}
+.overview-card .ant-card-body {
+    padding: 0 24px;
+}
+.overview-summary {
+    line-height: 2;
+}
+.overview-summary .overview-summary-main {
+    color: #2f3033;
+    font-size: 14px;
+}
+.overview-summary .overview-summary-main .overview-summary-main-value {
+    font-size: 26px;
+    font-family: Lucida Console,Monaco,monospace;
+}
+.overview-summary .overview-summary-main .overview-summary-main-unit {
+    margin-left: 6px;
+}

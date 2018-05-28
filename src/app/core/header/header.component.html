@@ -1,0 +1,10 @@
+<md-toolbar color='primary'>
+  <button  md-icon-button (click)='openSidebar()' *ngIf="isLogin">
+  <md-icon>menu</md-icon>
+  </button>
+  <span>学生服务平台</span>
+  <span class="fill-remaining-space"></span>
+  <button md-button *ngIf="isLogin" (click)="changeRole()">切换角色</button>
+  <button md-button *ngIf="isLogin" (click)="onLogout()">退出</button>
+  <md-slide-toggle (change)='onChange($event.checked)'>黑夜模式</md-slide-toggle>
+</md-toolbar>

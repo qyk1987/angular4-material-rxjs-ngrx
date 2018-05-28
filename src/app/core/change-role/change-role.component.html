@@ -1,0 +1,50 @@
+<div>
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+    <md-list>
+      <md-list-item *ngIf="filterList?.districts.length>0">
+        <label>大区:</label>      
+        <span  
+        *ngFor="let district of filterList?.districts;"
+        [ngClass]="{'selected':district.selected}"
+        (click)="onClickDistrict(district.id)"
+        >{{district.name}}</span>
+      </md-list-item>
+
+      <md-list-item *ngIf="filterList?.campus.length>0">
+        <label>校区:</label>      
+        <span  
+        *ngFor="let cam of filterList?.campus;"
+        [ngClass]="{'selected':cam.selected}"
+        (click)="onClickCampus(cam.id)"
+        >{{cam.name}}</span>
+      </md-list-item>
+
+      <md-list-item *ngIf="filterList?.spots.length>0">
+        <label>服务点:</label>      
+        <span  
+        *ngFor="let spot of filterList?.spots;"
+        [ngClass]="{'selected':spot.selected}"
+        (click)="onClickSpot(spot.id)"
+        >{{spot.name}}</span>
+      </md-list-item>
+
+      <md-list-item *ngIf="filterList?.posts.length>0">
+        <label>角色:</label>      
+        <span  
+        *ngFor="let post of filterList?.posts;"
+        [ngClass]="{'selected':post.selected}"
+        (click)="onClickPost(post.Id)"
+        >{{post.RoleLabel}}</span>
+      </md-list-item>
+  
+      
+  
+     
+    </md-list>
+  </div>
+  <div md-dialog-actions>
+    <button md-raised-button color='primary' type="button" (click)="launchSelectRole()" [disabled]="select.Id==null" >保存</button>
+    <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+</div>

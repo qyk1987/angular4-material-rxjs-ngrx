@@ -1,0 +1,119 @@
+<div class="container">
+  <h2>{{(cla$|async).ClassName}}</h2>
+  <div class="overview-cards">
+    <div class="overview-card-wrapper wd200" >
+      <div class="ant-card overview-card">
+          <div class="ant-card-head">
+              <div class="ant-card-head-title">
+                <div>学生数量
+                  <!-- <i class="anticon anticon-info-circle overview-card-tip-icon" style="font-size: 12px; font-weight: normal; color: rgb(175, 212, 250); cursor: pointer;"></i> -->
+                </div>
+              </div> 
+          </div>
+          <div class="ant-card-body">
+            <div class="overview-summary">
+              <div class="overview-summary-main">
+                <span class="overview-summary-main-value">{{(cla$|async).StudentCount}}</span>
+                <span class="overview-summary-main-unit"><!-- react-text: 665 -->个<!-- /react-text --></span>
+              </div>
+              
+            </div>
+          </div>
+      </div>
+      
+    </div>
+    <div class="overview-card-wrapper wd200" >
+        <div class="ant-card overview-card">
+            <div class="ant-card-head">
+                <div class="ant-card-head-title">
+                  <div>班主任
+                    <!-- <i class="anticon anticon-info-circle overview-card-tip-icon" style="font-size: 12px; font-weight: normal; color: rgb(175, 212, 250); cursor: pointer;"></i> -->
+                  </div>
+                </div> 
+            </div>
+            <div class="ant-card-body">
+              <div class="overview-summary">
+                <div class="overview-summary-main">
+                  <span class="overview-summary-main-value">{{(cla$|async).chargerName}}</span>
+                  
+                </div>
+                
+              </div>
+        </div>
+        
+        </div>
+      </div>
+      <div class="overview-card-wrapper wd450" >
+          <div class="ant-card overview-card">
+              <div class="ant-card-head">
+                  <div class="ant-card-head-title">
+                    <div>所属产品
+                      <!-- <i class="anticon anticon-info-circle overview-card-tip-icon" style="font-size: 12px; font-weight: normal; color: rgb(175, 212, 250); cursor: pointer;"></i> -->
+                    </div>
+                  </div> 
+              </div>
+              <div class="ant-card-body">
+                <div class="overview-summary">
+                  <div class="overview-summary-main">
+                    <span class="overview-summary-main-value">{{(cla$|async).ProductName}}</span>
+                   
+                  </div>
+                  
+                </div>
+              </div>
+
+          </div>
+
+       
+      </div>
+
+      <div class="overview-card-wrapper wd200" *ngFor="let service of (cla$|async).Services" >
+        <div class="ant-card overview-card">
+            <div class="ant-card-head">
+                <div class="ant-card-head-title">
+                  <div>{{service.ServiceName}}
+                    <!-- <i class="anticon anticon-info-circle overview-card-tip-icon" style="font-size: 12px; font-weight: normal; color: rgb(175, 212, 250); cursor: pointer;"></i> -->
+                  </div>
+                </div> 
+            </div>
+            <div class="ant-card-body">
+              <div class="overview-summary">
+                <div class="overview-summary-main">
+                  <span class="overview-summary-main-value">{{service.CompleteCount}}</span>
+                  <span class="overview-summary-main-unit"><!-- react-text: 665 -->个<!-- /react-text --></span>
+                </div>
+                <div class="overview-summary-more">
+                    <md-progress-bar mode="determinate" color="accent" [value]="service.Value" ></md-progress-bar>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+  <div class="overview-list">
+    <form [formGroup]="form">
+        <md-input-container  class="p70-width"  >
+            <input mdInput type="text" placeholder="QQ/手机号/身份证号/姓名" formControlName="key" >
+            <button mdSuffix md-icon-button type="button">
+              <md-icon class="search" (click)="handleSearch()">search</md-icon>
+            </button>
+        </md-input-container>
+      </form>
+      
+      <app-table *ngIf="isshowtable"
+      [setting]="settings"
+       [data]="students$|async"
+      (toggle)="handleToggle($event)"
+      (clickItem)="handleclick($event)"
+       (changeNum)="handleChangeNum($event)"
+      >
+    
+      </app-table>
+      <app-page
+ 
+      (change)="handlePageChange($event)"
+      >
+      </app-page>
+  </div>
+</div>

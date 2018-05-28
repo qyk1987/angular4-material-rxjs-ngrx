@@ -1,0 +1,51 @@
+md-icon.avatar{
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 12px;
+}
+.side{
+    width:20%;
+    display: inline-block;
+    height: 600px;
+    overflow-y: scroll;
+}
+.main{
+    width:80%;
+    display: inline-block;
+    flex-direction: column;
+    display: flex;
+}
+.content{
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content div{
+    height:280px;
+    padding: 15px;
+}
+.picture{
+    width:150px!important;
+    height:230px!important;
+}
+.picture>img{
+    width:150px;
+    height:230px;
+}
+.idcard{
+    width:364px!important;
+    height:237px!important;
+}
+.info{
+    width:260px;
+}
+.free{
+    width:300px;
+}
+:host {
+    width: 100%!important;
+    height: 100%!important;
+    position: inherit!important;
+  }

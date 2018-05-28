@@ -1,0 +1,52 @@
+.item{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    //height: 48px;
+    padding: 12px;
+    margin-top:10px;
+    border-bottom: dashed #bbb 1px;
+    //position: relative;
+}
+.item div{
+    padding: 5px;
+}
+.origin-price {
+    font-size: 14px;
+    color: #999;
+}
+.now-price16 {
+    font-size: 16px;
+    color: #ff6029;
+    margin-right: 10px;
+}
+.now-price-green {
+    font-size: 16px;
+    color: #077007;
+    margin-right: 10px;
+}
+.now-price14 {
+    font-size: 14px;
+    color: #ff6029;
+    margin-right: 10px;
+}
+.now-price-tag {
+    font-size: 18px;
+}
+.gray{
+    color: #aaa;
+}
+.line{
+    border-bottom: 1px #999 solid;
+}
+.list{
+    background: rgb(251, 217, 255) ;
+    
+}
+.bottom{
+    margin-top:15px;
+}

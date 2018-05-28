@@ -1,0 +1,153 @@
+
+<div class="container">
+    <div class="toolbar">
+        <div class="title">
+            <h3>业务数据分析</h3>
+        </div>
+        <app-date-input
+        [(ngModel)]="formDate"
+        (update)="update()"
+        >
+
+        </app-date-input>
+        
+    </div>
+    <md-tab-group [dynamicHeight]="true" [selectedIndex]="selectedTab" (selectChange)="onTabChange($event.index)">
+            <md-tab class="tab" [label]="label"  *ngFor="let label of labels">
+            </md-tab>
+    </md-tab-group>
+    <div class="main-container">
+            <div class="board-container">
+                <div class="header-charts-container">
+                    <div *ngIf="selectedTab===0">
+                            <div style="flex: 1 1 1e-09px;box-sizing: border-box;"  *ngIf="charts['chartDis'].show">
+                                    <div class="chart-widget">
+                                            <div class="chart-container" >
+                                                   <div style="width:70%">
+                                                    <div echarts [options]="charts['chartDis'].option"  [loading]="charts['chartDis'].loading" class="demo-chart"></div>
+                                                   
+                                                   </div>
+                                                   <div style="width:30%">
+                                                    
+                                                    <div echarts [options]="charts['chartDis'].pieoption"  class="demo-chart"></div>
+                                                   </div>
+                                            </div>
+                                    </div>
+                            </div>
+                                
+                            <div *ngIf="charts['chartDis'].show">
+                                <div style="flex: 1 1 1e-09px;box-sizing: border-box;" *ngFor="let item of tempTitles"  >
+                                            <div class="chart-widget">
+                                                <div class="chart-container" >
+                                                       <div style="width:70%">
+                                                        <div echarts [options]="tempCharts[item]?.option"  [loading]="tempCharts[item]?.loading" class="demo-chart"></div>
+                                                       
+                                                       </div>
+                                                       <div style="width:30%">
+                                                       
+                                                        <div echarts [options]="tempCharts[item]?.pieoption"  class="demo-chart"></div>
+                                                       </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>  
+                            
+
+                            <div style="flex: 1 1 1e-09px;box-sizing: border-box;" *ngIf="charts['chartCam'].show" >
+                                <div class="chart-widget">
+                                        <div class="chart-container" >
+                                               <div style="width:70%">
+                                                <div echarts [options]="charts['chartCam'].option"  [loading]="charts['chartCam'].loading" class="demo-chart"></div>
+                                               
+                                               </div>
+                                                <div style="width:30%">
+                                               
+                                                <div echarts [options]="charts['chartCam'].pieoption"  class="demo-chart"></div>
+                                               </div>
+                                        </div>
+                                </div>
+                            </div>
+
+                            <div style="flex: 1 1 1e-09px;box-sizing: border-box;" *ngIf="charts['chartSpot'].show" >
+                                    <div class="chart-widget">
+                                            <div class="chart-container" >
+                                                   <div style="width:100%">
+                                                    <div echarts [options]="charts['chartSpot'].option"  [loading]="charts['chartSpot'].loading" class="demo-chart"></div>
+                                                   </div>
+                                            </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div *ngIf="selectedTab===1">
+                            <div style="flex: 1 1 1e-09px;box-sizing: border-box;"  *ngIf="charts['chartCategory'].show">
+                                    <div class="chart-widget">
+                                            <div class="chart-container" >
+                                                   <div style="width:70%">
+                                                    <div echarts [options]="charts['chartCategory'].option"  [loading]="charts['chartCategory'].loading" class="demo-chart"></div>
+                                                   
+                                                   </div>
+                                                   <div style="width:30%">
+                                                    
+                                                    <div echarts [options]="charts['chartCategory'].pieoption"  class="demo-chart"></div>
+                                                   </div>
+                                            </div>
+                                    </div>
+                            </div>
+                            <div >
+                                    <div style="flex: 1 1 1e-09px;box-sizing: border-box;" *ngFor="let item of tempTitles"  >
+                                                <div class="chart-widget">
+                                                    <div class="chart-container" >
+                                                           <div style="width:70%">
+                                                            <div echarts [options]="tempCharts[item]?.option"  [loading]="tempCharts[item]?.loading" class="demo-chart"></div>
+                                                           
+                                                           </div>
+                                                           <div style="width:30%">
+                                                           
+                                                            <div echarts [options]="tempCharts[item]?.pieoption"  class="demo-chart"></div>
+                                                           </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                </div>  
+                    </div>
+                    <div *ngIf="selectedTab===2">
+                        <div style="flex: 1 1 1e-09px;box-sizing: border-box;"  *ngIf="charts['chartSeller'].show">
+                                <div class="chart-widget">
+                                        <div class="chart-container" >
+                                               <div style="width:70%">
+                                                <div echarts [options]="charts['chartSeller'].option"  [loading]="charts['chartSeller'].loading" class="demo-chart"></div>
+                                               
+                                               </div>
+                                               <div style="width:30%">
+                                                
+                                                <div echarts [options]="charts['chartSeller'].pieoption"  class="demo-chart"></div>
+                                               </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div >
+                                <div style="flex: 1 1 1e-09px;box-sizing: border-box;" *ngFor="let item of tempTitles"  >
+                                            <div class="chart-widget">
+                                                <div class="chart-container" >
+                                                       <div style="width:70%">
+                                                        <div echarts [options]="tempCharts[item]?.option"  [loading]="tempCharts[item]?.loading" class="demo-chart"></div>
+                                                       
+                                                       </div>
+                                                       <div style="width:30%">
+                                                       
+                                                        <div echarts [options]="tempCharts[item]?.pieoption"  class="demo-chart"></div>
+                                                       </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>  
+                </div>
+                 
+                    
+                </div>
+             
+            </div>
+        </div>
+   
+</div>
+

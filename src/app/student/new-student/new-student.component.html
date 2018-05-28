@@ -1,0 +1,70 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+  <h2 md-dialog-title>{{title}}</h2>
+  <div md-dialog-content>
+      <md-input-container class="mgr15 wd150">
+          <input mdInput type="text" placeholder="姓名" formControlName="Name">
+      </md-input-container>
+      <md-input-container class="wd300" >
+        <input mdInput type="text" placeholder="身份证号" formControlName="IdCardNO">
+        <md-error>身份证号格式不正确</md-error>
+      </md-input-container>
+      <div class="select-group">
+        <md-select placeholder="民族"   formControlName="Nation" >
+          <md-option *ngFor="let nation of nations" [value]=nation.id 
+          >
+          {{nation.name}}
+          </md-option>
+        </md-select>
+        <md-select placeholder="年级*"   formControlName="Grade" >
+          <md-option *ngFor="let grade of grades" [value]=grade.id 
+          >
+          {{grade.name}}
+          </md-option>
+        </md-select>
+        <md-select placeholder="学校*"  formControlName="SchoolID" >
+          <md-option *ngFor="let school of schools$| async" [value]=school.Id 
+          >
+          {{school.SchoolName}}
+          </md-option>
+        </md-select>
+      </div>
+      <div class="select-group">
+         <md-select placeholder="学历*"  formControlName="Education" >
+          <md-option *ngFor="let edu of educations" [value]=edu.id 
+          >
+          {{edu.name}}
+          </md-option>
+        </md-select>
+        <md-select placeholder="专业"  formControlName="Major" >
+          <md-option *ngFor="let major of majors" [value]=major.id 
+          >
+          {{major.name}}
+          </md-option>
+        </md-select> 
+      </div>
+      <md-input-container class="wd150" >
+          <input mdInput type="text" placeholder="班级" formControlName="ClassName">
+      </md-input-container>
+      <md-input-container class="wd150" >
+        <input mdInput type="text" placeholder="QQ" formControlName="QQ">
+      </md-input-container>
+      <md-input-container class="wd150" >
+        <input mdInput type="text" placeholder="手机号" formControlName="MobilePhoneNO">
+        <md-error>手机号格式不正确</md-error>
+      </md-input-container>
+      <div class="full-width control-padding">
+        <app-area-list formControlName="Address"></app-area-list>
+      </div>
+      <app-schedule
+        [cols]="7"
+        [title]="'选择空余时间：'"
+        formControlName="Schedule"
+      >
+      </app-schedule>
+  </div>
+  <div md-dialog-actions>
+      <button md-raised-button color='primary' type="submit" [disabled]='!form.valid' >保存</button>
+      <button md-dialog-close md-button  type="button">关闭</button>
+  </div>
+
+</form>

@@ -1,0 +1,20 @@
+
+  <ul [ngClass]="{'ztree':root}">
+    <li *ngFor="let item of items">
+      <span  *ngIf="item.level!=0"  class="button  switch center_docu" ></span>
+      <span  *ngIf="item.hasChild" (click)="item.open=!item.open"  class="button level0 switch"  [ngClass]="{'root_open': item.open,'root_close': !item.open}"></span>
+      <a (click)="onClick($event,item.level,item.content)">
+          <span  class="node_name">{{item.title}}<span class="count_span" *ngIf="item.hasChild" >({{item.childCount}})</span></span>
+          <span  style="white-space: nowrap;">
+            <span class="button addNext" *ngIf="item.canAddChild" (click)="onAdd($event,item.level,item.content)" [title]="item.addTitle" onfocus="this.blur();"></span>
+            <span class="button edit"  [title]="item.editTitle" (click)="onEdit($event,item.level,item.content)" onfocus="this.blur();"></span>
+            <span class="button remove"  title="删除" (click)="onDel($event,item.level,item.content)" onfocus="this.blur();"></span>
+          </span>
+      </a>
+      
+      <app-menu-tree [items]="item.items" [hidden]="!(item.open && item.hasChild)" (edit)="handleedit($event)" (delete)="handledelete($event)"  (add)="handleadd($event)" (select)="onSelect($event)" >
+
+      </app-menu-tree>
+    </li>
+  </ul>
+
