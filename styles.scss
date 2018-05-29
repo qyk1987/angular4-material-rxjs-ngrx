@@ -1,0 +1,150 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'theme.scss';
+html,body,app-root,md-sidenav-container,.site{
+    width:100%;
+    height:100%;
+    margin: 0;
+}
+.site{
+    // display: -ms-flexbox;
+    // display: -webkit-flex;
+    // display: flex;
+    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    // display:-webkit-box;  
+    // -webkit-box-orient:vertical;  
+    justify-content: center;
+    height:100%; 
+}
+main{
+    // -ms-flex: 1;
+    // -webkit-flex: 1;
+    // flex: 1;
+    // // display: -ms-flexbox;
+    // // display: -webkit-flex;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+
+    //position:relative;  
+    -webkit-box-flex:1;  
+    -webkit-flex:1;  
+    flex:1;  
+    overflow:auto;  
+    -webkit-overflow-scrolling:touch;  
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    //background-color:#ccc;  
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width:80%;
+    margin: 0 auto;
+    margin-top: 15px;
+    //overflow-y: auto;
+}
+.full-width{
+    width:100%;
+}
+.p80-width{
+    width:80%;
+}
+.p70-width{
+    width:70%;
+}
+.p60-width{
+    width:60%;
+}
+.fill-remaining-space{
+    flex:1 1 auto;
+}
+.material-icon{
+    line-height: 1;
+}
+.square{
+    width:100px;
+    height: 100px;
+    background-color: black;
+}
+.br10{
+    width:100%;
+    height:10px;
+}
+.br15{
+    width:100%;
+    height:15px;
+}
+.br20{
+    width:100%;
+    height:20px;
+}
+.br25{
+    width:100%;
+    height:15px;
+}
+.mgr10{
+    margin-right: 10px;
+}
+.mgr15{
+    margin-right: 15px;
+}
+.wd100{
+    width:100px;
+}
+.wd150{
+    width:150px;
+}
+.wd200{
+    width:200px;
+}
+.wd250{
+    width:250px;
+}
+.wd300{
+    width:300px;
+}
+.wd350{
+    width:350px;
+}
+.wd400{
+    width:400px;
+}
+.wd450{
+    width:450px;
+}
+.wd500{
+    width:500px;
+}
+.wd550{
+    width:550px;
+}
+.wd600{
+    width:600px;
+}
+
+
+
+
+.badge { 
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+}
+.badge-accent{
+    background-color:#ff4081;
+}
